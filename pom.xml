@@ -143,13 +143,43 @@
         </configuration>
       </plugin>
 
-      <!-- Shade Plugin (for JMH benchmarks jar) -->
+      <!-- Shade Plugin (for Executable JARs) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.5.0</version>
         <executions>
+          <!-- Execution for the Main Application -->
           <execution>
+            <id>shade-app</id>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <!-- Rename to a nice generic name if desired, or default wrapper -->
+              <!-- Using default finalName for simplicity, or we can override -->
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.example.csv.CsvAnalyzerApp</mainClass>
+                </transformer>
+              </transformers>
+              <filters>
+                <filter>
+                    <artifact>*:*</artifact>
+                    <excludes>
+                        <exclude>META-INF/*.SF</exclude>
+                        <exclude>META-INF/*.DSA</exclude>
+                        <exclude>META-INF/*.RSA</exclude>
+                    </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+          
+          <!-- Execution for Benchmarks (Separate Jar) -->
+          <execution>
+            <id>shade-benchmarks</id>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
