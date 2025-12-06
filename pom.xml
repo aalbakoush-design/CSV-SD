@@ -12,6 +12,7 @@
     <maven.compiler.target>17</maven.compiler.target>
     <commons.csv.version>1.10.0</commons.csv.version>
     <junit.version>5.10.0</junit.version>
+    <mockito.version>5.5.0</mockito.version>
     <jacoco.version>0.8.10</jacoco.version>
     <pitest.version>1.15.0</pitest.version>
     <jmh.version>1.37</jmh.version>
@@ -30,6 +31,20 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Mockito -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
 
